@@ -1,0 +1,86 @@
+body,
+html {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    overflow: hidden;
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#596a72+15,cedce7+100 */
+    background: #596a72;
+    /* Old browsers */
+    background: -moz-linear-gradient(top, #596a72 15%, #cedce7 100%);
+    /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, #596a72 15%, #cedce7 100%);
+    /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, #596a72 15%, #cedce7 100%);
+    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#596a72', endColorstr='#cedce7', GradientType=0);
+    /* IE6-9 */
+}
+
+.mainScreen {
+    margin: auto;
+    display: inline-block;
+    height: 95vh;
+    width: 100vw;
+    padding: 0;
+}
+
+.title {
+    margin: auto;
+    font-family: 'Indie Flower', cursive;
+    text-align: center;
+    font-size: 9vh;
+    width: 100vw;
+    margin-top: 15vh;
+    font-weight: 900;
+    padding: 0;
+}
+
+.userName {
+    margin: auto;
+    font-family: 'Indie Flower', cursive;
+    text-align: center;
+    width: 100vw;
+    font-size: 7vh;
+    padding: 0;
+}
+
+.usernameInput {
+    text-align: center;
+    width: 100vw;
+    padding: 0;
+}
+
+.footerTextLeft {
+    font-family: 'Teko', sans-serif;
+    font-size: 3vh;
+    position: fixed;
+    left: 2vw;
+    bottom: 1vh;
+}
+
+.footerTextRight {
+    font-family: 'Teko', sans-serif;
+    font-size: 3vh;
+    position: fixed;
+    right: 2vw;
+    bottom: 1vh;
+}
+
+.form-inline {
+    display: inline-block;
+}
+
+.form-control {
+    margin-top: 2vh;
+    font-size: 4vh;
+}
+
+.btn {
+    margin-top: 2vh;
+    font-size: 4vh;
+}
+
+.btn:hover {
+    backround-color: black;
+}
