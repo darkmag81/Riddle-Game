@@ -11,36 +11,28 @@ def index():
         flash("Thanks {}, we have received your message!".format(request.form["username"]))    
     return render_template("index.html",  page_title="Riddle Game")
 
-@app.route('/about')
-def about():
+@app.route('/riddle')
+def riddle():
     data = []
     with open("data/riddles.json", "r") as json_data:
         data = json.load(json_data)
-    return render_template("about.html", page_title="About", company_data=data)
+    return render_template("riddle.html", page_title="Riddle Game - Riddles", company_data=data)
 
-@app.route('/about/<member_name>')
-def about_member(member_name):
+@app.route('/riddle/<riddle_no>')
+def riddlePage(riddle):
     member = {}
     
     with open("data/riddles.json", "r") as json_data:
         data = json.load(json_data)
         for obj in data:
-            if obj["url"] == member_name:
+            if obj["url"] == riddle:
                 member = obj
                 
     return render_template("member.html", member=member)
 
-@app.route('/contact', methods=["GET", "POST"])
-def contact():
-    if request.method == "POST":
-        flash("Thanks {}, we have received your message!".format(
-              request.form["name"]))
-    return render_template("contact.html", page_title="Contact Us")
-
-
-@app.route('/careers')
-def careers():
-    return render_template('careers.html', page_title="Careers")
+@app.route('/end')
+def endGame():
+    return render_template("end.html", page_title="Riddle Game - Game Over")
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
