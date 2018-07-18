@@ -17,10 +17,10 @@ def addBadAnswers(username, message):
             message))
 
 def getBadAnswers():
-    messages = []
+    answer = []
     with open("data/badanswers.txt", "r") as badAnswers:
-        messages = [row for row in badAnswers if len(row.strip()) > 0]
-    return messages
+        answer = [row for row in badAnswers if len(row.strip()) > 0]
+    return answer
 
 def getAllPlayers():
     users = []
@@ -57,8 +57,8 @@ def user(username):
     if request.method == "POST":
         if playerAnswer == "secretanswer12" and rIndex > 10:
             return render_template("end.html", username=username)
-    messages = getBadAnswers()
-    return render_template("riddle.html", username=username, badAnswers=messages, riddles_data=data, rIndex=rIndex, wrongAnswersText=wrongAnswersText, wrongAnswersList=wrongAnswersList)
+    answer = getBadAnswers()
+    return render_template("riddle.html", username=username, badAnswers=answer, riddles_data=data, rIndex=rIndex, wrongAnswersText=wrongAnswersText, wrongAnswersList=wrongAnswersList)
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
