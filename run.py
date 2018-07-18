@@ -1,38 +1,64 @@
 import os
 import json
-from flask import Flask, render_template, request, flash
+
+from flask import Flask, redirect, render_template, request
 
 app = Flask(__name__)
-app.secret_key = 'secretpassword'
+app.secret_key = 'some_secret'
+data = []
+
+def saveToFile(filename, data):
+    with open(filename, "a") as file:
+        file.writelines(data)
+
+def addBadAnswers(username, message):
+    saveToFile("data/badanswers.txt", "({0}) - {1}\n".format(
+            username.title(),
+            message))
+
+def getBadAnswers():
+    messages = []
+    with open("data/badanswers.txt", "r") as badAnswers:
+        messages = [row for row in badAnswers if len(row.strip()) > 0]
+    return messages
+
+def getAllPlayers():
+    users = []
+    with open("data/playersList.txt", "r") as playerAnswer:
+        users = playerAnswer.readlines()
+    return users
 
 @app.route('/', methods=["GET", "POST"])
 def index():
     if request.method == "POST":
-        flash("Thanks {}, we have received your message!".format(request.form["username"]))    
-    return render_template("index.html",  page_title="Riddle Game")
+        saveToFile("data/playersList.txt", request.form["username"] + "\n")
+        return redirect(request.form["username"])
+    return render_template("index.html")
 
-@app.route('/riddle')
-def riddle():
+@app.route('/<username>', methods=["GET", "POST"])
+def user(username):
+    wrongAnswersText = ''
+    wrongAnswersList = ''
     data = []
     with open("data/riddles.json", "r") as json_data:
         data = json.load(json_data)
-    return render_template("riddle.html", page_title="Riddle Game - Riddles", company_data=data)
-
-@app.route('/riddle/<riddle_no>')
-def riddlePage(riddle):
-    member = {}
-    
-    with open("data/riddles.json", "r") as json_data:
-        data = json.load(json_data)
-        for obj in data:
-            if obj["url"] == riddle:
-                member = obj
-                
-    return render_template("member.html", member=member)
-
-@app.route('/end')
-def endGame():
-    return render_template("end.html", page_title="Riddle Game - Game Over")
+    rIndex = 0
+    if request.method == "POST":
+        rIndex = int(request.form["rIndex"])
+        playerAnswer = request.form["message"].lower()
+        if data[rIndex]["answer"] == playerAnswer:
+            rIndex += 1
+            wrongAnswersText = ''
+            wrongAnswersList = ''
+        else:
+            addBadAnswers(username, playerAnswer + "\n")
+            wrongAnswersText = 'Wrong Answers:'
+            wrongAnswersList = wrongAnswersList + playerAnswer
+    if request.method == "POST":
+        if playerAnswer == "secretanswer12" and rIndex > 10:
+            return render_template("end.html", username=username)
+    messages = getBadAnswers()
+    return render_template("riddle.html", username=username, badAnswers=messages, riddles_data=data, rIndex=rIndex, wrongAnswersText=wrongAnswersText, wrongAnswersList=wrongAnswersList)
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
