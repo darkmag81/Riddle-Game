@@ -1,0 +1,16 @@
+Player created on 2018-07-25 19:06:19
+-------------------------------------------
+Bad answers list:
+-------------------------------------------
+Riddle 9, tries left 1: No answer
+Riddle 9, tries left 0: No answer
+Riddle 10, tries left 1: No answer
+Riddle 10, tries left 0: No answer
+Riddle 10, tries left 1: No answer
+Riddle 11, tries left 1: No answer
+Riddle 11, tries left 0: No answer
+Riddle 12, tries left 1: No answer
+Riddle 12, tries left 0: No answer
+-------------------------------------------
+Score: 8
+-------------------------------------------

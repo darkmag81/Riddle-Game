@@ -14,7 +14,7 @@
 <body>
     <div class="container mainScreen">
         <h1 class="title">Hello {{ username }}!</h1>
-        <h2 class="answerText">Riddle {{rIndex + 1}}:</h2>
+        <h2 class="answerText">Riddle {{rIndex + 1}} of 12:</h2>
         <div class="usernameInput">
             <!-- FORM -->
             <div class="userInput">
@@ -27,12 +27,13 @@
             <form method="POST" class="form-inline">
                 <input type="text" class="form-control" placeholder="answer" name="message" id="message" autofocus>
                 <input type="hidden" name="rIndex" id="rIndex" value={{rIndex}}>
+                <input type="hidden" name="score" id="score" value={{score}}>
+                <input type="hidden" name="tries" id="tries" value={{tries}}>
                 <button class="btn btn-danger">Answer</button>
             </form>
         </div>
         <div class="badanswers">
             <p>{{ wrongAnswersText }}</p>
-            <p>{{ wrongAnswersList }}</p>
         </div>
     </div>
     <footer>

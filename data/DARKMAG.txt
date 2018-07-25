@@ -1,0 +1,11 @@
+Player created on 2018-07-25 18:44:12
+-------------------------------------------
+Bad answers list:
+-------------------------------------------
+Riddle 11, tries left 1: fff
+Riddle 11, tries left 0: ddd
+Riddle 12, tries left 1: sss
+Riddle 12, tries left 0: aaa
+-------------------------------------------
+Score: 10
+-------------------------------------------

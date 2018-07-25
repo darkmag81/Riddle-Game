@@ -15,12 +15,31 @@
     <div class="container mainScreen">
         <h2 class="endText">Thank you for playing {{ username }}...</h2>
     </div>
-    <section>
-    </section>
+    <div class="container topscore">
+        <p class="topplayers">Top Players:</p>
+        <table class="highScoreTable">
+            <tr>
+                <th>Place</th>
+                <th>Player name:</th>
+                <th>Score</th>
+            </tr>
+            {% for x in player %}
+            <tr>
+                <th>{{ loop.index }}</th>
+                <th>{{ x.name }}</th>
+                <th>{{ x.score }}</th>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <div class="buttonAgain">
+        <a href=/><button class="btn btn-success againButon">Try Again</button></a>
+    </div>
     <footer>
-            <span class="footerTextLeft">&copy;2018 Maciej Pawelek</span>
-            <span class="footerTextRight">Project for Code Institute, Dublin</span>
+        <span class="footerTextLeft">&copy;2018 Maciej Pawelek</span>
+        <span class="footerTextRight">Project for Code Institute, Dublin</span>
     </footer>
+
 </body>
 
 </html>
